@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2K PC Compatibility Checker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        select, input[type="file"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        pre {
+            background: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h2>🎮 2K PC Compatibility Checker</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="game">Select Game:</label>
+        <select name="game" id="game">
+            <option>NBA 2K25</option>
+            <option>NBA 2K24</option>
+            <option>WWE 2K24</option>
+            <option>PGA 2K23</option>
+            <option>TopSpin 2K25</option>
+            <option>LEGO 2K Drive</option>
+        </select>
+
+        <label for="dxdiag">Upload DxDiag.txt</label>
+        <input type="file" name="dxdiag" required>
+
+        <label for="msinfo">Upload MSInfo (optional)</label>
+        <input type="file" name="msinfo">
+
+        <input type="submit" value="Analyze">
+    </form>
+
+    {% if dxdiag_summary %}
+    <pre>{{ dxdiag_summary }}</pre>
+    {% endif %}
+
+    {% if msinfo_summary %}
+    <pre>{{ msinfo_summary }}</pre>
+    {% endif %}
+</body>
+</html>
