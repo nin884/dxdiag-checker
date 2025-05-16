@@ -119,7 +119,7 @@ def parse_msinfo(file_path):
             try:
                 gb = int(''.join(filter(str.isdigit, line.split(":")[1]))) / 1024
                 if gb < 8:
-                    warnings.append("⚠️ Low RAM: Less than 8 GB may cause lag.")
+                    warnings.append("[!] Low RAM: Less than 8 GB may cause lag.")
             except:
                 pass
             system_info.append(line.strip())
@@ -127,14 +127,14 @@ def parse_msinfo(file_path):
             try:
                 gb = int(''.join(filter(str.isdigit, line.split(":")[1]))) / 1024
                 if gb < 20:
-                    warnings.append("⚠️ Low storage: Less than 20 GB free space.")
+                    warnings.append("[!] Low storage: Less than 20 GB free space.")
             except:
                 pass
         if "Driver Problem" in line or "Disabled" in line:
-            warnings.append(f"⚠️ Driver issue or disabled device: {line.strip()}")
+            warnings.append(f"[!] Driver issue or disabled device: {line.strip()}")
 
-    return "
-".join(system_info + ["", "🚩 Potential Issues:"] + (warnings if warnings else ["No immediate issues found."]))
+    return "\n".join(system_info + ["", "[POTENTIAL ISSUES]"] + (warnings if warnings else ["No immediate issues found."]))
+
 
 def assess_gpu(gpu):
     if "RTX" in gpu or "RX 6" in gpu:
